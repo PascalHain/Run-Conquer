@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Run&amp;Conquer</string>
+    <string name="tab_home">Start</string>
+    <string name="tab_map">Map</string>
+    <string name="tab_team">Team</string>
+    <string name="tab_profile">You</string>
+    <string name="activity_button">Activity</string>
+    <string name="title_recent_activities">Recent Activities</string>
+    <string name="title_team">Team</string>
+    <string name="title_profile">Profil</string>
+    <string name="title_run_summary">Lauf abgeschlossen</string>
+    <string name="button_pause">Pause</string>
+    <string name="button_stop">Stop</string>
+    <string name="button_to_map">Zur Karte</string>
+    <string name="button_to_home">Zur Startseite</string>
+    <string name="google_maps_static_key"></string>
+</resources>

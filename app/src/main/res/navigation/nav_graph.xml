@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.pascalhain.runconquer.ui.home.HomeFragment"
+        android:label="Home" />
+
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.pascalhain.runconquer.ui.map.MapFragment"
+        android:label="Map" />
+
+    <fragment
+        android:id="@+id/trackingFragment"
+        android:name="com.pascalhain.runconquer.ui.tracking.TrackingFragment"
+        android:label="Tracking">
+        <action
+            android:id="@+id/action_tracking_to_summary"
+            app:destination="@id/runSummaryFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/runSummaryFragment"
+        android:name="com.pascalhain.runconquer.ui.summary.RunSummaryFragment"
+        android:label="Run Summary" />
+
+    <fragment
+        android:id="@+id/teamFragment"
+        android:name="com.pascalhain.runconquer.ui.team.TeamFragment"
+        android:label="Team" />
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.pascalhain.runconquer.ui.profile.ProfileFragment"
+        android:label="Profile" />
+</navigation>

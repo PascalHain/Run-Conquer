@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <org.osmdroid.views.MapView
+        android:id="@+id/mapStartMap"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/bg_map_area"
+        android:clipToPadding="false" />
+
+    <Button
+        android:id="@+id/buttonStartRun"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_button_red_rounded"
+        android:text="Run starten"
+        android:textColor="@color/colorTextPrimary" />
+</LinearLayout>

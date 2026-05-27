@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="colorBackground">#0F131A</color>
+    <color name="colorHeaderDark">#0B1018</color>
+    <color name="colorCard">#171717</color>
+    <color name="colorCardSecondary">#1E1E24</color>
+    <color name="colorBottomBar">#1E1822</color>
+    <color name="colorPrimary">#F73838</color>
+    <color name="colorPrimaryDark">#8F111D</color>
+    <color name="colorTextPrimary">#FFFFFFFF</color>
+    <color name="colorTextSecondary">#FFB8B8B8</color>
+    <color name="colorDivider">#FF2A2A2A</color>
+    <color name="colorBadge">#F73838</color>
+    <color name="colorTerritoryEnemy">#2E2E2E</color>
+    <color name="colorTerritoryNeutral">#6D6D6D</color>
+    <color name="colorTerritorySelf">#F73838</color>
+</resources>
