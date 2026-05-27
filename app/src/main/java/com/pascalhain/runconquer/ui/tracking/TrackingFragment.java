@@ -12,6 +12,8 @@ import android.widget.Button;
 import org.osmdroid.views.MapView;
 import android.widget.TextView;
 
+import com.pascalhain.runconquer.data.model.RoutePoint;
+
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -105,10 +107,21 @@ public class TrackingFragment extends Fragment {
             if (location == null) {
                 return;
             }
-            OsmMapHelper.updateLocation(mapTracking, location.getLatitude(), location.getLongitude(), true);
+            if (!hasRoutePoints()) {
+                OsmMapHelper.updateLocation(
+                        mapTracking,
+                        location.getLatitude(),
+                        location.getLongitude(),
+                        true
+                );
+            }
         });
-        viewModel.getRoutePoints().observe(getViewLifecycleOwner(), points ->
-                OsmMapHelper.updateRoute(mapTracking, points, true));
+        viewModel.getRoutePoints().observe(getViewLifecycleOwner(), points -> {
+            OsmMapHelper.updateRoute(mapTracking, points, true);
+            if (points != null && !points.isEmpty() && hasLocationPermission()) {
+                OsmMapHelper.enableMyLocation(requireContext(), mapTracking, true);
+            }
+        });
 
         viewModel.getTimerText().observe(getViewLifecycleOwner(), textTimer::setText);
         viewModel.getTimerText().observe(getViewLifecycleOwner(), textTime::setText);
@@ -144,6 +157,7 @@ public class TrackingFragment extends Fragment {
     public void onStart() {
         super.onStart();
         if (hasLocationPermission()) {
+            OsmMapHelper.enableMyLocation(requireContext(), mapTracking, true);
             startLocationUpdates();
         }
         if (mapTracking != null) {
@@ -167,6 +181,7 @@ public class TrackingFragment extends Fragment {
                     Manifest.permission.ACCESS_COARSE_LOCATION
             });
         } else {
+            OsmMapHelper.enableMyLocation(requireContext(), mapTracking, true);
             startLocationUpdates();
         }
     }
@@ -195,6 +210,14 @@ public class TrackingFragment extends Fragment {
         if (locationClient != null && locationCallback != null) {
             locationClient.removeLocationUpdates(locationCallback);
         }
+    }
+
+    private boolean hasRoutePoints() {
+        if (viewModel == null || viewModel.getRoutePoints().getValue() == null) {
+            return false;
+        }
+        java.util.List<RoutePoint> points = viewModel.getRoutePoints().getValue();
+        return points != null && !points.isEmpty();
     }
 
     private boolean shouldAutoStart() {

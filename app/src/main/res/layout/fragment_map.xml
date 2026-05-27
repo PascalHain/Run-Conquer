@@ -9,95 +9,54 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:background="@drawable/bg_card_dark_rounded"
+        android:padding="14dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Territory Map"
-            android:textColor="@color/colorTextPrimary"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
+            android:text="Run &amp; Conquer"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="@color/colorTextPrimary" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Live"
-            android:textColor="@color/colorPrimary"
-            android:textSize="12sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:orientation="horizontal">
+            android:layout_marginTop="4dp"
+            android:text="Gebiete entstehen aus echten Lauf-Routen"
+            android:textSize="12sp"
+            android:textColor="@color/colorTextSecondary" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
-            <View
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:background="@color/colorTerritorySelf" />
-
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:text="Deine Gebiete"
-                android:textColor="@color/colorTextSecondary"
+                android:layout_weight="1"
+                android:text="● Dein Gebiet"
+                android:textColor="@color/colorTerritorySelf"
                 android:textSize="12sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <View
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:background="@color/colorTerritoryEnemy" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:text="Gegner"
-                android:textColor="@color/colorTextSecondary"
+                android:layout_weight="1"
+                android:text="● Gegner"
+                android:textColor="@color/colorTerritoryEnemy"
                 android:textSize="12sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <View
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:background="@color/colorTerritoryNeutral" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:text="Neutral"
-                android:textColor="@color/colorTextSecondary"
+                android:layout_weight="1"
+                android:text="● Neutral"
+                android:textColor="@color/colorTerritoryNeutral"
                 android:textSize="12sp" />
         </LinearLayout>
     </LinearLayout>
@@ -106,8 +65,8 @@
         android:id="@+id/mapTerritory"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
         android:layout_weight="1"
+        android:layout_marginTop="12dp"
         android:background="@drawable/bg_map_area"
         android:clipToPadding="false" />
 </LinearLayout>

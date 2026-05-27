@@ -44,6 +44,7 @@ public class StartRunFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Button buttonStartRun = view.findViewById(R.id.buttonStartRun);
+        View buttonCancelStartRun = view.findViewById(R.id.buttonCancelStartRun);
         mapStartMap = view.findViewById(R.id.mapStartMap);
         trackingViewModel = new ViewModelProvider(requireActivity()).get(TrackingViewModel.class);
         locationClient = LocationServices.getFusedLocationProviderClient(requireContext());
@@ -70,6 +71,12 @@ public class StartRunFragment extends Fragment {
                 return;
             }
             OsmMapHelper.updateLocation(mapStartMap, location.getLatitude(), location.getLongitude(), true);
+        });
+
+        buttonCancelStartRun.setOnClickListener(v -> {
+            if (getActivity() instanceof MainActivity) {
+                ((MainActivity) getActivity()).showHome();
+            }
         });
 
         buttonStartRun.setOnClickListener(v -> {
