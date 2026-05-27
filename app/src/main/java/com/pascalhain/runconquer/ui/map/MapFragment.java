@@ -20,6 +20,7 @@ import com.pascalhain.runconquer.R;
 import com.pascalhain.runconquer.data.model.OwnerType;
 import com.pascalhain.runconquer.ui.common.OsmMapHelper;
 import com.pascalhain.runconquer.viewmodel.MapViewModel;
+import com.pascalhain.runconquer.viewmodel.TrackingViewModel;
 
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.Polygon;
@@ -28,6 +29,7 @@ import java.util.List;
 
 public class MapFragment extends Fragment {
 
+    private TrackingViewModel trackingViewModel;
     private MapViewModel mapViewModel;
     private MapView mapView;
     private ActivityResultLauncher<String[]> permissionLauncher;
@@ -71,6 +73,22 @@ public class MapFragment extends Fragment {
             return;
         }
         mapView.getOverlays().removeIf(overlay -> overlay instanceof Polygon);
+        for (TerritoryPolygon polygonData : polygons) {
+            if (polygonData.getPoints() == null || polygonData.getPoints().size() < 3) {
+                continue;
+            }
+            OsmMapHelper.updateLocation(mapView, location.getLatitude(), location.getLongitude(), true);
+        });
+
+        mapViewModel = new ViewModelProvider(this).get(MapViewModel.class);
+        mapViewModel.getTerritoryPolygons().observe(getViewLifecycleOwner(), this::renderTerritories);
+        mapViewModel.refreshTerritories();
+    }
+
+    private void renderTerritories(List<TerritoryPolygon> polygons) {
+        if (mapView == null || polygons == null) {
+            return;
+        }
         for (TerritoryPolygon polygonData : polygons) {
             if (polygonData.getPoints() == null || polygonData.getPoints().size() < 3) {
                 continue;
