@@ -63,10 +63,19 @@ public class MapFragment extends Fragment {
             });
         }
 
-        trackingViewModel = new ViewModelProvider(requireActivity()).get(TrackingViewModel.class);
-        trackingViewModel.getLastLocation().observe(getViewLifecycleOwner(), location -> {
-            if (location == null) {
-                return;
+        mapViewModel = new ViewModelProvider(this).get(MapViewModel.class);
+        mapViewModel.getTerritoryPolygons().observe(getViewLifecycleOwner(), this::renderTerritories);
+        mapViewModel.refreshTerritories();
+    }
+
+    private void renderTerritories(List<TerritoryPolygon> polygons) {
+        if (mapView == null || polygons == null) {
+            return;
+        }
+        mapView.getOverlays().removeIf(overlay -> overlay instanceof Polygon);
+        for (TerritoryPolygon polygonData : polygons) {
+            if (polygonData.getPoints() == null || polygonData.getPoints().size() < 3) {
+                continue;
             }
             OsmMapHelper.updateLocation(mapView, location.getLatitude(), location.getLongitude(), true);
         });
