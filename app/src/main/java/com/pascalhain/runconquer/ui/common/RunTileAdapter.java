@@ -1,6 +1,7 @@
 package com.pascalhain.runconquer.ui.common;
 
 import android.view.LayoutInflater;
+import android.widget.ImageView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -94,7 +95,7 @@ public class RunTileAdapter extends RecyclerView.Adapter<RunTileAdapter.RunTileV
 
     static class RunTileViewHolder extends RecyclerView.ViewHolder {
 
-        private final View mapRunTilePlaceholder;
+        private final ImageView mapRunTilePreview;
         private final TextView textRunTitle;
         private final TextView textRunSubtitle;
         private final TextView textRunMeta;
@@ -107,7 +108,7 @@ public class RunTileAdapter extends RecyclerView.Adapter<RunTileAdapter.RunTileV
         RunTileViewHolder(@NonNull View itemView, OnRunClickListener clickListener) {
             super(itemView);
             this.clickListener = clickListener;
-            mapRunTilePlaceholder = itemView.findViewById(R.id.mapRunTilePlaceholder);
+            mapRunTilePreview = itemView.findViewById(R.id.mapRunTilePreview);
             textRunTitle = itemView.findViewById(R.id.textRunTitle);
             textRunSubtitle = itemView.findViewById(R.id.textRunSubtitle);
             textRunMeta = itemView.findViewById(R.id.textRunMeta);
@@ -152,8 +153,16 @@ public class RunTileAdapter extends RecyclerView.Adapter<RunTileAdapter.RunTileV
             textRunDistance.setText(String.format(Locale.US, "%.1f km", run.getDistanceKm()));
             textRunDuration.setText(run.getDuration() == null ? "--:--" : run.getDuration());
             textRunPace.setText(run.getPace() == null ? "-- min/km" : run.getPace());
-            if (mapRunTilePlaceholder != null) {
-                mapRunTilePlaceholder.setVisibility(View.VISIBLE);
+            if (mapRunTilePreview != null) {
+                mapRunTilePreview.setVisibility(View.VISIBLE);
+                double previewLat = run.getLatitude();
+                double previewLng = run.getLongitude();
+                if (run.getRoutePoints() != null && !run.getRoutePoints().isEmpty()) {
+                    int lastIndex = run.getRoutePoints().size() - 1;
+                    previewLat = run.getRoutePoints().get(lastIndex).getLatitude();
+                    previewLng = run.getRoutePoints().get(lastIndex).getLongitude();
+                }
+                MapPreviewLoader.load(mapRunTilePreview, previewLat, previewLng);
             }
         }
     }
